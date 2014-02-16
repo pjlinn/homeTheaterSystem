@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" ng-app="homeTheaterApp">
+<head>
+  <meta charset="utf-8">
+  <title>Home Theater System</title>
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/bootstrap.css"> 
+  <link rel="stylesheet" href="css/app.css"/>
+</head>
+<body ng-controller="homeTheaterCtrl">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span4"> 
+        <!-- Side bar content -->
+        Search: <input ng-model="query">
+        Sort by: 
+        <select ng-model="orderProp"> 
+          <option value="brand">Brand</option>
+          <option value="cost">Price</option>
+          <option value="performance">Performance</option>
+        </select>
+      </div>
+      <div class="span8">
+        <!-- Body content -->
+        <label>Available Components: </label> <br>
+        <ul>
+          <li ng-repeat="x in homeTheaterComponents | filter:query | orderBy:orderProp">
+            <p>
+              <label> Brand: {{x.brand}}</label>
+              <label> Type: {{x.component}}</label> 
+              <label> Price: {{x.cost}}</label>
+            </p>
+          </li>
+        </ul>
+      </div>      
+    </div>
+  </div>
+
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular/angular-route.js"></script>
+  <script src="js/controllers.js"></script>
+
+</body>
+</html>
